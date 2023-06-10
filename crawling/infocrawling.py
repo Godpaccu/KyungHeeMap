@@ -7,6 +7,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import json
+import idInfo
 
 
 driver = webdriver.Chrome(service= Service(ChromeDriverManager().install()))
@@ -21,10 +22,10 @@ tag_id.clear()
 tag_pw.clear()
 time.sleep(0.8)
 tag_id.click()
-tag_id.send_keys('dlwlrma2003')
+tag_id.send_keys(idInfo.id)
 time.sleep(0.8)
 tag_pw.click()
-tag_pw.send_keys('Dltjdqls1!')
+tag_pw.send_keys(idInfo.pw)
 time.sleep(0.8)
 login_btn = driver.find_element(By.XPATH,'//*[@id="loginFrm"]/div/div[2]/div[1]/div[2]/button[1]')
 login_btn.click()
