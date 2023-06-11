@@ -40,6 +40,11 @@
             android:label="@string/title_activity_realmain"
             android:theme="@style/Theme.KyungHeeMap" />
         <activity
+            android:name="zum3floor"
+            android:exported="false"
+            android:label="@string/title_activity_realmain"
+            android:theme="@style/Theme.KyungHeeMap" />
+        <activity
             android:name=".m6floor"
             android:exported="false"
             android:label="@string/title_activity_realmain"
@@ -53,6 +58,11 @@
             android:name=".MainActivity2"
             android:exported="false"
             android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.KyungHeeMap" />
+        <activity
+            android:name=".zum1floor"
+            android:exported="false"
+            android:label="@string/title_activity_realmain"
             android:theme="@style/Theme.KyungHeeMap" />
         <activity
             android:name=".MainActivity"
