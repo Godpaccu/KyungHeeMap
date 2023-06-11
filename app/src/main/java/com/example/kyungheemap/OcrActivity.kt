@@ -279,113 +279,99 @@ class ShowActivity : AppCompatActivity() {
         label_1.setOnClickListener {
             var floorNumber = Character.getNumericValue(SplitInfo[1][1])
             val intent = when (floorNumber) {
-                1 -> Intent(this, m1floor::class.java)
+                1 -> Intent(this, zum1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
-                3 -> Intent(this, m3floor::class.java)
+                3 -> Intent(this, zum3floor::class.java)
                 4 -> Intent(this, m4floor::class.java)
                 5 -> Intent(this, m5floor::class.java)
                 6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
-            intent?.apply {
-                putExtra("class", SplitInfo[1] )
-            }
+            startActivity(intent)
         }
         label_2.text = if (dividedLinesSize > 1) dividedLines?.get(1) else "No divided lines"
         label_2.setOnClickListener {
             var floorNumber = Character.getNumericValue(SplitInfo[3][1])
             val intent = when (floorNumber) {
-                1 -> Intent(this, m1floor::class.java)
+                1 -> Intent(this, zum1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
-                3 -> Intent(this, m3floor::class.java)
+                3 -> Intent(this, zum3floor::class.java)
                                 4 -> Intent(this, m4floor::class.java)
                                 5 -> Intent(this, m5floor::class.java)
                                 6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
-            intent?.apply {
-                putExtra("class", SplitInfo[3] )
-            }
+            startActivity(intent)
         }
         label_3.text = if (dividedLinesSize > 2) dividedLines?.get(2) else "No divided lines"
         label_3.setOnClickListener {
             var floorNumber = Character.getNumericValue(SplitInfo[5][1])
             val intent = when (floorNumber) {
-                1 -> Intent(this, m1floor::class.java)
+                1 -> Intent(this, zum1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
-                3 -> Intent(this, m3floor::class.java)
+                3 -> Intent(this, zum3floor::class.java)
                                 4 -> Intent(this, m4floor::class.java)
                                 5 -> Intent(this, m5floor::class.java)
                                 6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
-            intent?.apply {
-                putExtra("class", SplitInfo[5] )
-            }
+            startActivity(intent)
         }
         label_4.text = if (dividedLinesSize > 3) dividedLines?.get(3) else "수업이 없습니다"
         label_4.setOnClickListener {
             var floorNumber = Character.getNumericValue(SplitInfo[7][1])
             val intent = when (floorNumber) {
-                1 -> Intent(this, m1floor::class.java)
+                1 -> Intent(this, zum1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
-                3 -> Intent(this, m3floor::class.java)
+                3 -> Intent(this, zum3floor::class.java)
                 4 -> Intent(this, m4floor::class.java)
                 5 -> Intent(this, m5floor::class.java)
                 6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
-            intent?.apply {
-                putExtra("class", SplitInfo[7] )
-            }
+            startActivity(intent)
         }
         label_5.text = if (dividedLinesSize > 4) dividedLines?.get(4) else "수업이 없습니다"
         label_5.setOnClickListener {
             var floorNumber = Character.getNumericValue(SplitInfo[9][1])
             val intent = when (floorNumber) {
-                1 -> Intent(this, m1floor::class.java)
+                1 -> Intent(this, zum1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
-                3 -> Intent(this, m3floor::class.java)
+                3 -> Intent(this, zum3floor::class.java)
                 4 -> Intent(this, m4floor::class.java)
                 5 -> Intent(this, m5floor::class.java)
                 6 -> Intent(this, m6floor::class.java)
             else -> null
             }
-            intent?.apply {
-                putExtra("class", SplitInfo[9] )
-            }
+            startActivity(intent)
         }
         label_6.text = if (dividedLinesSize > 5) dividedLines?.get(5) else "수업이 없습니다"
         label_6.setOnClickListener {
             var floorNumber = Character.getNumericValue(SplitInfo[11][1])
             val intent = when (floorNumber) {
-                1 -> Intent(this, m1floor::class.java)
+                1 -> Intent(this, zum1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
-                3 -> Intent(this, m3floor::class.java)
+                3 -> Intent(this, zum3floor::class.java)
                 4 -> Intent(this, m4floor::class.java)
                 5 -> Intent(this, m5floor::class.java)
                 6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
-            intent?.apply {
-                putExtra("class", SplitInfo[9] )
-            }
+            startActivity(intent)
         }
         label_7.text = if (dividedLinesSize > 6) dividedLines?.get(6) else "수업이 없습니다"
         label_7.setOnClickListener {
             var floorNumber = Character.getNumericValue(SplitInfo[13][1])
             val intent = when (floorNumber) {
-                1 -> Intent(this, m1floor::class.java)
+                1 -> Intent(this, zum1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
-                3 -> Intent(this, m3floor::class.java)
+                3 -> Intent(this, zum3floor::class.java)
                 4 -> Intent(this, m4floor::class.java)
                 5 -> Intent(this, m5floor::class.java)
                 6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
-            intent?.apply {
-                putExtra("class", SplitInfo[13] )
-            }
+            startActivity(intent)
         }
 
 
