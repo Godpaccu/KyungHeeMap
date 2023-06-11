@@ -2,6 +2,7 @@ package com.example.kyungheemap
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import android.os.Bundle
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -27,6 +28,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
     }
 
     /**
@@ -62,16 +64,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.addMarker(MarkerOptions().position(Design).title("예술디자인대학"))
 
         mMap.setOnMarkerClickListener { marker ->
-        if(marker.title == "공과대학"){
-            showBuildingDetails()
+            val buildingName = marker.title
+            val intent = Intent(this@MapsActivity,BuildingDetailsActivity::class.java)
+            intent.putExtra("buildingName", buildingName)
+            startActivity(intent)
+            true
         }
-        true
-        }
-    }
-
-    private fun showBuildingDetails(){
-        val intent = Intent(this,BuildingDetailsActivity::class.java)
-        startActivity(intent)
     }
 
 }
