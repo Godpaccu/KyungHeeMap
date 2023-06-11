@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -27,16 +29,29 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAxrfKUeij6MB_pesCVb0D-xqdXU_d-aLw" />
 
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" /> <!-- To use multiple models: android:value="ocr,model2,model3" -->
+
         <activity
-            android:name=".MapsActivity"
+            android:name=".OcrActivity"
             android:exported="true"
-            android:label="@string/title_activity_maps">
+            android:label="OCR Activity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_maps">
+
+        </activity>
+
     </application>
 
 </manifest>

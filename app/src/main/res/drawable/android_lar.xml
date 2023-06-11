@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="640dp"
+    android:viewportWidth="360"
+    android:viewportHeight="640">
+
+    <path
+        android:fillColor="#F4F0F0"
+        android:pathData="M0 0H360V640H0z"/>
+
+    <group>
+        <path
+            android:pathData="M180 34A158 158 0 1 0 180 350 158 158 0 1 0 180 34z"/>
+        <path
+            android:fillColor="#FF000000"
+            android:pathData="M180 34.5A157.5 157.5 0 1 0 180 349.5 157.5 157.5 0 1 0 180 34.5z"/>
+    </group>
+
+    <group>
+        <path
+            android:fillColor="#FF20EB35"
+            android:pathData="M59 469c0-8.28 6.72-15 15-15h213c8.28 0 15 6.72 15 15v64c0 8.28-6.72 15-15 15h-213c-8.28 0-15-6.72-15-15z"/>
+        <path
+            android:strokeColor="#F5F8F5"
+            android:strokeWidth="1"
+            android:strokeLineJoin="round"
+            android:pathData="M59.5 469c0-8.01 6.49-14.5 14.5-14.5h213c8.01 0 14.5 6.49 14.5 14.5v64c0 8.01-6.49 14.5-14.5 14.5h-213c-8.01 0-14.5-6.49-14.5-14.5z"/>
+    </group>
+
+    <path
+        android:fillColor="#FDFDFD"
+        android:pathData="M106.82 486.1h3.27v7.77c0 9.99-5.38 19.25-12.48 22.85l-2.45-3.26c6.43-3.08 11.66-11.38 11.66-19.59v-7.77Zm0.68 0h3.26v7.77c0 7.92 5.18 15.89 11.62 18.87l-2.4 3.16c-7.06-3.45-12.48-12.38-12.48-22.03v-7.77Zm19.39-3.8h3.98v43.5h-3.98v-43.5Zm23.32 4.52h3.27v3.5c0 7.97-4.8 14.6-12.05 17.18l-2.11-3.12c6.57-2.3 10.9-7.87 10.9-14.06v-3.5Z"/>
+
+    <layer-list>
+        <item>
+            <shape android:shape="oval">
+            </shape>
+        </item>
+        <item>
+            <bitmap
+                android:src="@drawable/kyunghee_icon"
+                android:gravity="center" />
+        </item>
+    </layer-list>
+
+</vector>
