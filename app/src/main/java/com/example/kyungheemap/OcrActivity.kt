@@ -262,6 +262,16 @@ class ShowActivity : AppCompatActivity() {
         label_6 = findViewById(R.id.textView6)
         label_7 = findViewById(R.id.textView7)
 
+        savedInstanceState?.let {
+            label_1.text = it.getString("label_1_text", "No divided lines")
+            label_2.text = it.getString("label_2_text", "No divided lines")
+            label_3.text = it.getString("label_3_text", "No divided lines")
+            label_4.text = it.getString("label_4_text", "수업이 없습니다")
+            label_5.text = it.getString("label_5_text", "수업이 없습니다")
+            label_6.text = it.getString("label_6_text", "수업이 없습니다")
+            label_7.text = it.getString("label_7_text", "수업이 없습니다")
+        }
+
         val SplitInfo  = ArrayList<String>()
         val dividedLines = intent.getStringArrayListExtra("dividedLines")
         val AdividedLines = intent.getStringArrayListExtra("AdividedLines")
@@ -287,8 +297,10 @@ class ShowActivity : AppCompatActivity() {
                 6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
+
             intent?.apply {
                 putExtra("class", SplitInfo[1] )
+                startActivity(this)
             }
         }
         label_2.text = if (dividedLinesSize > 1) dividedLines?.get(1) else "No divided lines"
@@ -305,6 +317,7 @@ class ShowActivity : AppCompatActivity() {
             }
             intent?.apply {
                 putExtra("class", SplitInfo[3] )
+                startActivity(this)
             }
         }
         label_3.text = if (dividedLinesSize > 2) dividedLines?.get(2) else "No divided lines"
@@ -321,6 +334,7 @@ class ShowActivity : AppCompatActivity() {
             }
             intent?.apply {
                 putExtra("class", SplitInfo[5] )
+                startActivity(this)
             }
         }
         label_4.text = if (dividedLinesSize > 3) dividedLines?.get(3) else "수업이 없습니다"
@@ -337,6 +351,7 @@ class ShowActivity : AppCompatActivity() {
             }
             intent?.apply {
                 putExtra("class", SplitInfo[7] )
+                startActivity(this)
             }
         }
         label_5.text = if (dividedLinesSize > 4) dividedLines?.get(4) else "수업이 없습니다"
@@ -353,6 +368,7 @@ class ShowActivity : AppCompatActivity() {
             }
             intent?.apply {
                 putExtra("class", SplitInfo[9] )
+                startActivity(this)
             }
         }
         label_6.text = if (dividedLinesSize > 5) dividedLines?.get(5) else "수업이 없습니다"
@@ -369,6 +385,7 @@ class ShowActivity : AppCompatActivity() {
             }
             intent?.apply {
                 putExtra("class", SplitInfo[9] )
+                startActivity(this)
             }
         }
         label_7.text = if (dividedLinesSize > 6) dividedLines?.get(6) else "수업이 없습니다"
@@ -385,7 +402,20 @@ class ShowActivity : AppCompatActivity() {
             }
             intent?.apply {
                 putExtra("class", SplitInfo[13] )
+                startActivity(this)
             }
+        }
+
+        fun onSaveInstanceState(outState: Bundle) {
+            super.onSaveInstanceState(outState)
+            // 상태 저장
+            outState.putString("label_1_text", label_1.text.toString())
+            outState.putString("label_2_text", label_2.text.toString())
+            outState.putString("label_3_text", label_3.text.toString())
+            outState.putString("label_4_text", label_4.text.toString())
+            outState.putString("label_5_text", label_5.text.toString())
+            outState.putString("label_6_text", label_6.text.toString())
+            outState.putString("label_7_text", label_7.text.toString())
         }
 
 

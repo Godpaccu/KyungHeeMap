@@ -2,6 +2,7 @@ package com.example.kyungheemap
 
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -17,6 +18,8 @@ import org.json.JSONObject
 import java.nio.charset.Charset
 import java.nio.file.Files
 import java.nio.file.Paths
+import androidx.core.content.ContextCompat
+
 
 // JSON 파일 경로
 val filePath = "java/crawlOut.json"
@@ -26,6 +29,8 @@ val jsonString = String(Files.readAllBytes(Paths.get(filePath)), Charset.default
 
 // JSON 배열 생성
 val jsonArray = JSONArray(jsonString)
+val colorFF= Color.parseColor("#FFFFFF00")
+val color00= Color.parseColor("#00FFFF00")
 fun check(c: String): String{
     // JSON 배열 순회
     var str=""
@@ -53,6 +58,8 @@ class m1floor : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_1stfloor)
+        val receivedClass = intent.getStringExtra("class")
+
         val back= findViewById<Button>(R.id.button_back)
         back.setOnClickListener {
             val intent = Intent(this, MainActivity2::class.java)
@@ -98,7 +105,7 @@ class m1floor : AppCompatActivity() {
         val viewlabel=findViewById<TextView>(R.id.viewlabels)
         val m176_3=findViewById<Button>(R.id.m176_3)
         m176_3.setOnClickListener {
-            m176_3.backgroundTintMode = "#FFFFFF00"
+            m176_3.backgroundTintList = ContextCompat.getColorStateList(this, colorFF)
             viewlabel.text=check("공176_3")
         }
     }

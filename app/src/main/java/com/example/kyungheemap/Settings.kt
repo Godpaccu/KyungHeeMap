@@ -18,12 +18,12 @@ class Settings : ComponentActivity() {
         setContentView(R.layout.settings)
         val button = findViewById<ImageView>(R.id.ocrbutton)
         button.setOnClickListener {
-            val intent = Intent(this@Settings, OcrActivity::class.java)//수정
+            val intent = Intent(this@Settings, Settings::class.java)//수정
             startActivity(intent)
         }
         val button2 = findViewById<Button>(R.id.viewscf)
         button2.setOnClickListener {
-            val intent = Intent(this@Settings, ShowActivity::class.java)//수정
+            val intent = Intent(this@Settings, OcrActivity::class.java)//수정
             startActivity(intent)
         }
     }
