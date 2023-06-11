@@ -262,6 +262,27 @@ class ShowActivity : AppCompatActivity() {
         label_6 = findViewById(R.id.textView6)
         label_7 = findViewById(R.id.textView7)
 
+        savedInstanceState?.let {
+            label_1.text = it.getString("label_1_text", "No divided lines")
+            label_2.text = it.getString("label_2_text", "No divided lines")
+            label_3.text = it.getString("label_3_text", "No divided lines")
+            label_4.text = it.getString("label_4_text", "수업이 없습니다")
+            label_5.text = it.getString("label_5_text", "수업이 없습니다")
+            label_6.text = it.getString("label_6_text", "수업이 없습니다")
+            label_7.text = it.getString("label_7_text", "수업이 없습니다")
+        }
+
+        fun onSaveInstanceState(outState: Bundle) {
+            super.onSaveInstanceState(outState)
+            // 상태 저장
+            outState.putString("label_1_text", label_1.text.toString())
+            outState.putString("label_2_text", label_2.text.toString())
+            outState.putString("label_3_text", label_3.text.toString())
+            outState.putString("label_4_text", label_4.text.toString())
+            outState.putString("label_5_text", label_5.text.toString())
+            outState.putString("label_6_text", label_6.text.toString())
+            outState.putString("label_7_text", label_7.text.toString())
+        }
         val SplitInfo  = ArrayList<String>()
         val dividedLines = intent.getStringArrayListExtra("dividedLines")
         val AdividedLines = intent.getStringArrayListExtra("AdividedLines")
