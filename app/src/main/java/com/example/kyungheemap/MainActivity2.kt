@@ -22,7 +22,7 @@ class MainActivity2 : ComponentActivity() {
         }
         val button2 = findViewById<Button>(R.id.ec_button)
         button2.setOnClickListener {
-            val intent = Intent(this@MainActivity2, realmain1::class.java)//수정
+            val intent = Intent(this@MainActivity2, m1floor::class.java)//수정
             startActivity(intent)
 
         }

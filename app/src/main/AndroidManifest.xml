@@ -20,7 +20,7 @@
             android:label="@string/title_activity_realmain"
             android:theme="@style/Theme.KyungHeeMap" />
         <activity
-            android:name=".realmain1"
+            android:name=".m4floor"
             android:exported="false"
             android:label="@string/title_activity_realmain"
             android:theme="@style/Theme.KyungHeeMap" />
@@ -33,6 +33,16 @@
             android:name=".m2floor"
             android:exported="false"
             android:label="@string/title_activity_settingss"
+            android:theme="@style/Theme.KyungHeeMap" />
+        <activity
+            android:name=".m5floor"
+            android:exported="false"
+            android:label="@string/title_activity_realmain"
+            android:theme="@style/Theme.KyungHeeMap" />
+        <activity
+            android:name=".m6floor"
+            android:exported="false"
+            android:label="@string/title_activity_realmain"
             android:theme="@style/Theme.KyungHeeMap" />
         <activity
             android:name=".Settings"
@@ -49,7 +59,11 @@
             android:exported="true"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.KyungHeeMap">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -72,11 +86,7 @@
             android:name=".OcrActivity"
             android:exported="true"
             android:label="OCR Activity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity
