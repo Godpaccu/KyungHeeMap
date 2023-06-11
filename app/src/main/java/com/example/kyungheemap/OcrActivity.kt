@@ -13,6 +13,10 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 
 class OcrActivity : AppCompatActivity() {
@@ -21,17 +25,57 @@ class OcrActivity : AppCompatActivity() {
     private var selectedImageUri: Uri? = null
     private var visionText: Text? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ocractivity)
         ocrTextView = findViewById(R.id.textView)
 
-        val runOCRButton: Button = findViewById(R.id.button)
+        val jsonArrayFileName = "crawlOut.json"
+        val objects = convertJSONArrayToObjects(jsonArrayFileName)
 
+        // 개별 객체 출력
+        for (obj in objects) {
+            println(obj)
+        }
+
+        // OCR 결과 확인
+        checkOCRResults(objects)
+
+        val runOCRButton: Button = findViewById(R.id.button)
         runOCRButton.setOnClickListener {
             processImage()
+        }
+    }
+    // OCR 결과 확인 함수
+    private fun checkOCRResults(objects: List<JSONObject>) {
+        val ocrResult = ocrTextView.text.toString().trim()
+        val ocrLines = ocrResult.split("\n")
+        val ocrLineCount = ocrLines.size
 
+        for (i in 0 until ocrLineCount step 2) {
+            if (i + 1 < ocrLineCount) {
+                val name = ocrLines[i].trim()
+                val classInfo = ocrLines[i + 1].trim()
+
+                val matchingObject = objects.find { obj ->
+                    val objName = obj.optString("name", "")
+                    val objClass = obj.optString("class", "")
+                    ocrResult.contains(objName) && ocrResult.contains(objClass)
+                }
+
+                if (matchingObject != null) {
+                    val name = matchingObject.optString("name", "")
+                    val prof = matchingObject.optString("prof", "")
+                    val time = matchingObject.optString("time", "")
+                    val classRoom = matchingObject.optString("class", "")
+
+                    val info = "Name: $name\nProfessor: $prof\nTime: $time\nClass: $classRoom\n"
+
+                    println("OCR 된 텍스트가 요소에 포함되어 있습니다: $info")
+                } else {
+                    println("OCR 된 텍스트가 요소에 포함되어 있지 않습니다: $name, $classInfo")
+                }
+            }
         }
     }
 
@@ -66,7 +110,17 @@ class OcrActivity : AppCompatActivity() {
 
         // Callback 함수를 정의하여 OCR 결과를 수집하고 처리
         val processOcrCallback = { sectionOcrResult: String ->
-            ocrResults.add(sectionOcrResult) // OCR 결과 저장
+            val processedResult = if (sectionOcrResult.endsWith("공")) {
+                if (sectionOcrResult.length >= 2) {
+                    sectionOcrResult.substring(0, sectionOcrResult.length - 1) + "\n"
+                } else {
+                    sectionOcrResult
+                }
+            } else {
+                sectionOcrResult
+            }
+
+            ocrResults.add(processedResult) // OCR 결과 저장
 
             completedSections++
             if (completedSections == totalSections) {
@@ -74,6 +128,7 @@ class OcrActivity : AppCompatActivity() {
                 processCombinedOcrResult(ocrResults)
             }
         }
+
 
         // Divide the image and perform OCR on each section
         for (i in 0 until totalSections) {
@@ -92,6 +147,7 @@ class OcrActivity : AppCompatActivity() {
                     // Handle OCR result for each section
                     val sectionOcrResult = extractOcrResult(visionText)
                     processOcrCallback(sectionOcrResult) // OCR 결과를 처리하는 콜백 함수 호출
+
                 }
                 .addOnFailureListener { e ->
                     // Handle OCR failure for each section
@@ -99,26 +155,229 @@ class OcrActivity : AppCompatActivity() {
                 }
         }
     }
-
     private fun extractOcrResult(visionText: Text): String {
-        // OCR 결과에서 텍스트 추출
         val ocrResult = StringBuilder()
+        var previousLineText = ""
+
         for (block in visionText.textBlocks) {
-            val text = block.text
-            ocrResult.append(text).append("\n")
+            for (line in block.lines) {
+                val lineText = line.text.trim()
+
+                if (lineText.endsWith("공")) {
+                    ocrResult.append(lineText)
+                    continue
+                } else {
+                    ocrResult.append(lineText)
+                }
+
+                ocrResult.append("\n")
+                previousLineText = lineText
+            }
         }
-        return ocrResult.toString()
+
+        return ocrResult.toString().trim()
     }
 
-    private fun processCombinedOcrResult(ocrResults: List<String>) {
-        // 여기에서 5개의 OCR 결과를 한꺼번에 처리하는 로직을 구현
-        // 예: 결과를 합치거나 출력하기
+
+    public fun processCombinedOcrResult(ocrResults: List<String>) {
         val combinedResult = StringBuilder()
-        for ((index, result) in ocrResults.withIndex()) {
-            combinedResult.append("Section ${index + 1} OCR Result:\n")
-            combinedResult.append(result)
-            combinedResult.append("\n")
+        val lines = ocrResults[0].split("\n")
+        val AdividedLines = mutableListOf<String>()
+
+        var i = 0
+        while (i < lines.size) {
+            val line = StringBuilder(lines[i++])
+            if (i < lines.size && lines[i].isNotBlank()) {
+                line.append("\n").append(lines[i++])
+            }
+            AdividedLines.add(line.toString())
         }
-        ocrTextView.text = combinedResult.toString()
+
+        for (line in AdividedLines) {
+            println(line)
+        }
+        val dividedLines = AdividedLines.map { it.replace("\n", "-") }
+        ocrTextView.text = dividedLines.toString()
+        val intent = Intent(this, ShowActivity::class.java)
+        intent.putStringArrayListExtra("dividedLines", ArrayList(dividedLines))
+        intent.putStringArrayListExtra("AdividedLines", ArrayList(AdividedLines))
+        startActivity(intent)
+    }
+
+
+
+
+    fun convertJSONArrayToObjects(jsonArrayFileName: String): List<JSONObject> {
+        val objects = mutableListOf<JSONObject>()
+
+        try {
+            val inputStream = assets.open(jsonArrayFileName)
+            val reader = BufferedReader(InputStreamReader(inputStream))
+            val jsonString = reader.use { it.readText() }
+
+            val jsonArray = JSONArray(jsonString)
+
+
+            for (i in 0 until jsonArray.length()) {
+                val jsonObject = jsonArray.getJSONObject(i)
+                objects.add(jsonObject)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return objects
+
+
+    }
+}
+
+class ShowActivity : AppCompatActivity() {
+    private lateinit var label_1: TextView
+    private lateinit var label_2: TextView
+    private lateinit var label_3: TextView
+    private lateinit var label_4: TextView
+    private lateinit var label_5: TextView
+    private lateinit var label_6: TextView
+    private lateinit var label_7: TextView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.showlabel)
+        label_1 = findViewById(R.id.textView1)
+        label_2 = findViewById(R.id.textView2)
+        label_3 = findViewById(R.id.textView3)
+        label_4 = findViewById(R.id.textView4)
+        label_5 = findViewById(R.id.textView5)
+        label_6 = findViewById(R.id.textView6)
+        label_7 = findViewById(R.id.textView7)
+
+        val SplitInfo  = ArrayList<String>()
+        val dividedLines = intent.getStringArrayListExtra("dividedLines")
+        val AdividedLines = intent.getStringArrayListExtra("AdividedLines")
+        if (AdividedLines != null) {
+            for (aLine in AdividedLines) {
+                var SplitLine = aLine.split("\n")
+                var lvl = SplitLine[1]
+                SplitInfo.addAll(SplitLine)
+            }
+        }
+        // intent로 콜하는데 넘기는 클래스 이름은 m1foor, 전달되는 인수는 스트링으로 m176_3
+        val dividedLinesSize = dividedLines?.size ?: 0
+
+        label_1.text = if (dividedLinesSize > 0) dividedLines?.get(0) else "No divided lines"
+        label_1.setOnClickListener {
+            var floorNumber = Character.getNumericValue(SplitInfo[1][1])
+            val intent = when (floorNumber) {
+                1 -> Intent(this, m1floor::class.java)
+                2 -> Intent(this, m2floor::class.java)
+                3 -> Intent(this, m3floor::class.java)
+/*                4 -> Intent(this, m4floor::class.java)
+                5 -> Intent(this, m5floor::class.java)
+                6 -> Intent(this, m6floor::class.java)*/
+                else -> null
+            }
+            intent?.apply {
+                putExtra("class", SplitInfo[1] )
+            }
+        }
+        label_2.text = if (dividedLinesSize > 1) dividedLines?.get(1) else "No divided lines"
+        label_2.setOnClickListener {
+            var floorNumber = Character.getNumericValue(SplitInfo[3][1])
+            val intent = when (floorNumber) {
+                1 -> Intent(this, m1floor::class.java)
+                2 -> Intent(this, m2floor::class.java)
+                3 -> Intent(this, m3floor::class.java)
+                /*                4 -> Intent(this, m4floor::class.java)
+                                5 -> Intent(this, m5floor::class.java)
+                                6 -> Intent(this, m6floor::class.java)*/
+                else -> null
+            }
+            intent?.apply {
+                putExtra("class", SplitInfo[3] )
+            }
+        }
+        label_3.text = if (dividedLinesSize > 2) dividedLines?.get(2) else "No divided lines"
+        label_3.setOnClickListener {
+            var floorNumber = Character.getNumericValue(SplitInfo[5][1])
+            val intent = when (floorNumber) {
+                1 -> Intent(this, m1floor::class.java)
+                2 -> Intent(this, m2floor::class.java)
+                3 -> Intent(this, m3floor::class.java)
+                /*                4 -> Intent(this, m4floor::class.java)
+                                5 -> Intent(this, m5floor::class.java)
+                                6 -> Intent(this, m6floor::class.java)*/
+                else -> null
+            }
+            intent?.apply {
+                putExtra("class", SplitInfo[5] )
+            }
+        }
+        label_4.text = if (dividedLinesSize > 3) dividedLines?.get(3) else "수업이 없습니다"
+        label_4.setOnClickListener {
+            var floorNumber = Character.getNumericValue(SplitInfo[7][1])
+            val intent = when (floorNumber) {
+                1 -> Intent(this, m1floor::class.java)
+                2 -> Intent(this, m2floor::class.java)
+                3 -> Intent(this, m3floor::class.java)
+                /*                4 -> Intent(this, m4floor::class.java)
+                                5 -> Intent(this, m5floor::class.java)
+                                6 -> Intent(this, m6floor::class.java)*/
+                else -> null
+            }
+            intent?.apply {
+                putExtra("class", SplitInfo[7] )
+            }
+        }
+        label_5.text = if (dividedLinesSize > 4) dividedLines?.get(4) else "수업이 없습니다"
+        label_5.setOnClickListener {
+            var floorNumber = Character.getNumericValue(SplitInfo[9][1])
+            val intent = when (floorNumber) {
+                1 -> Intent(this, m1floor::class.java)
+                2 -> Intent(this, m2floor::class.java)
+                3 -> Intent(this, m3floor::class.java)
+                /*                4 -> Intent(this, m4floor::class.java)
+                                5 -> Intent(this, m5floor::class.java)
+                                6 -> Intent(this, m6floor::class.java)*/
+                else -> null
+            }
+            intent?.apply {
+                putExtra("class", SplitInfo[9] )
+            }
+        }
+        label_6.text = if (dividedLinesSize > 5) dividedLines?.get(5) else "수업이 없습니다"
+        label_6.setOnClickListener {
+            var floorNumber = Character.getNumericValue(SplitInfo[11][1])
+            val intent = when (floorNumber) {
+                1 -> Intent(this, m1floor::class.java)
+                2 -> Intent(this, m2floor::class.java)
+                3 -> Intent(this, m3floor::class.java)
+                /*                4 -> Intent(this, m4floor::class.java)
+                                5 -> Intent(this, m5floor::class.java)
+                                6 -> Intent(this, m6floor::class.java)*/
+                else -> null
+            }
+            intent?.apply {
+                putExtra("class", SplitInfo[9] )
+            }
+        }
+        label_7.text = if (dividedLinesSize > 6) dividedLines?.get(6) else "수업이 없습니다"
+        label_7.setOnClickListener {
+            var floorNumber = Character.getNumericValue(SplitInfo[13][1])
+            val intent = when (floorNumber) {
+                1 -> Intent(this, m1floor::class.java)
+                2 -> Intent(this, m2floor::class.java)
+                3 -> Intent(this, m3floor::class.java)
+                /*                4 -> Intent(this, m4floor::class.java)
+                                5 -> Intent(this, m5floor::class.java)
+                                6 -> Intent(this, m6floor::class.java)*/
+                else -> null
+            }
+            intent?.apply {
+                putExtra("class", SplitInfo[13] )
+            }
+        }
+
+
     }
 }
