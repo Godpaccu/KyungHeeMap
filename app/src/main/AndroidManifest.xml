@@ -49,11 +49,7 @@
             android:exported="true"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.KyungHeeMap">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -75,11 +71,28 @@
         <activity
             android:name=".OcrActivity"
             android:exported="true"
-            android:label="OCR Activity" />
+            android:label="OCR Activity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".MapsActivity"
             android:exported="true"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps">
+
+        </activity>
+
+        <activity
+            android:name=".ShowActivity"
+            android:exported="true"
+            android:label="@string/title_activity_maps">
+
+        </activity>
+
     </application>
 
 </manifest>
