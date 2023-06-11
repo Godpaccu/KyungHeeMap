@@ -272,9 +272,9 @@ class ShowActivity : AppCompatActivity() {
                 1 -> Intent(this, m1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
                 3 -> Intent(this, m3floor::class.java)
-/*                4 -> Intent(this, m4floor::class.java)
+                4 -> Intent(this, m4floor::class.java)
                 5 -> Intent(this, m5floor::class.java)
-                6 -> Intent(this, m6floor::class.java)*/
+                6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
             intent?.apply {
@@ -288,9 +288,9 @@ class ShowActivity : AppCompatActivity() {
                 1 -> Intent(this, m1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
                 3 -> Intent(this, m3floor::class.java)
-                /*                4 -> Intent(this, m4floor::class.java)
+                                4 -> Intent(this, m4floor::class.java)
                                 5 -> Intent(this, m5floor::class.java)
-                                6 -> Intent(this, m6floor::class.java)*/
+                                6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
             intent?.apply {
@@ -304,9 +304,9 @@ class ShowActivity : AppCompatActivity() {
                 1 -> Intent(this, m1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
                 3 -> Intent(this, m3floor::class.java)
-                /*                4 -> Intent(this, m4floor::class.java)
+                                4 -> Intent(this, m4floor::class.java)
                                 5 -> Intent(this, m5floor::class.java)
-                                6 -> Intent(this, m6floor::class.java)*/
+                                6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
             intent?.apply {
@@ -320,9 +320,9 @@ class ShowActivity : AppCompatActivity() {
                 1 -> Intent(this, m1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
                 3 -> Intent(this, m3floor::class.java)
-                /*                4 -> Intent(this, m4floor::class.java)
-                                5 -> Intent(this, m5floor::class.java)
-                                6 -> Intent(this, m6floor::class.java)*/
+                4 -> Intent(this, m4floor::class.java)
+                5 -> Intent(this, m5floor::class.java)
+                6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
             intent?.apply {
@@ -336,10 +336,10 @@ class ShowActivity : AppCompatActivity() {
                 1 -> Intent(this, m1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
                 3 -> Intent(this, m3floor::class.java)
-                /*                4 -> Intent(this, m4floor::class.java)
-                                5 -> Intent(this, m5floor::class.java)
-                                6 -> Intent(this, m6floor::class.java)*/
-                else -> null
+                4 -> Intent(this, m4floor::class.java)
+                5 -> Intent(this, m5floor::class.java)
+                6 -> Intent(this, m6floor::class.java)
+            else -> null
             }
             intent?.apply {
                 putExtra("class", SplitInfo[9] )
@@ -352,9 +352,9 @@ class ShowActivity : AppCompatActivity() {
                 1 -> Intent(this, m1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
                 3 -> Intent(this, m3floor::class.java)
-                /*                4 -> Intent(this, m4floor::class.java)
-                                5 -> Intent(this, m5floor::class.java)
-                                6 -> Intent(this, m6floor::class.java)*/
+                4 -> Intent(this, m4floor::class.java)
+                5 -> Intent(this, m5floor::class.java)
+                6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
             intent?.apply {
@@ -368,9 +368,9 @@ class ShowActivity : AppCompatActivity() {
                 1 -> Intent(this, m1floor::class.java)
                 2 -> Intent(this, m2floor::class.java)
                 3 -> Intent(this, m3floor::class.java)
-                /*                4 -> Intent(this, m4floor::class.java)
-                                5 -> Intent(this, m5floor::class.java)
-                                6 -> Intent(this, m6floor::class.java)*/
+                4 -> Intent(this, m4floor::class.java)
+                5 -> Intent(this, m5floor::class.java)
+                6 -> Intent(this, m6floor::class.java)
                 else -> null
             }
             intent?.apply {
