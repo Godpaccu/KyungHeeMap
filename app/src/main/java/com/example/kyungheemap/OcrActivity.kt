@@ -25,10 +25,20 @@ class OcrActivity : AppCompatActivity() {
     private var selectedImageUri: Uri? = null
     private var visionText: Text? = null
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ocractivity)
         ocrTextView = findViewById(R.id.textView)
+
+        val prev = findViewById<Button>(R.id.prev_button)
+        prev.setOnClickListener {
+            val intent = Intent(this,Settings::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
         val jsonArrayFileName = "crawlOut.json"
         val objects = convertJSONArrayToObjects(jsonArrayFileName)

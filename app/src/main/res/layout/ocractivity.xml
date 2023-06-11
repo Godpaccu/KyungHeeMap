@@ -14,61 +14,52 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
             android:src="@drawable/kyunghee_icon" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OCR" />
+            android:text="OCR"
+            android:layout_marginTop="9999dp"
+            android:visibility="gone" />
 
-    </RelativeLayout>
+        <Button
+            android:id="@+id/prev_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_below="@id/ImageContainer"
-        android:background="#166e78"
-        android:id="@+id/OCRButtonContainer">
-
-        <!-- 기존의 MaterialTextView 코드를 RelativeLayout로 수정 -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="processImage">
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RUN OCR"
-                android:textSize="18dp"
-                android:textColor="#ffffff"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
-
-        </RelativeLayout>
 
     </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/OCRButtonContainer"
+        android:layout_height="match_parent"
+
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/ocrTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="여기에 결과 출력"
-            android:id="@+id/ocrTextView"
-            android:textSize="15dp"
-            android:textColor="#169cdf"
-            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="600dp"
             android:background="#fff"
-            />
+            android:text="주의사항)'\n 에브리타임 시간표 -> 설정 -> 이미지로 저장 후 올려주세요"
+            android:textColor="#169cdf"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="111dp"
+            android:layout_height="67dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="650dp"
+            android:text="Button" />
+
     </RelativeLayout>
 
 
