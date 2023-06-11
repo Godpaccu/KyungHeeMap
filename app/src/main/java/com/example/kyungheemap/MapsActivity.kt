@@ -71,5 +71,4 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             true
         }
     }
-
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,47 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KyungHeeMap"
         tools:targetApi="31">
+        <activity
+            android:name=".m3floor"
+            android:exported="false"
+            android:label="@string/title_activity_realmain"
+            android:theme="@style/Theme.KyungHeeMap" />
+        <activity
+            android:name=".realmain1"
+            android:exported="false"
+            android:label="@string/title_activity_realmain"
+            android:theme="@style/Theme.KyungHeeMap" />
+        <activity
+            android:name=".m1floor"
+            android:exported="false"
+            android:label="@string/title_activity_realmain"
+            android:theme="@style/Theme.KyungHeeMap" />
+        <activity
+            android:name=".m2floor"
+            android:exported="false"
+            android:label="@string/title_activity_settingss"
+            android:theme="@style/Theme.KyungHeeMap" />
+        <activity
+            android:name=".Settings"
+            android:exported="false"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.KyungHeeMap" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.KyungHeeMap" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.KyungHeeMap">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -28,30 +69,17 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAxrfKUeij6MB_pesCVb0D-xqdXU_d-aLw" />
-
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" /> <!-- To use multiple models: android:value="ocr,model2,model3" -->
-
         <activity
             android:name=".OcrActivity"
             android:exported="true"
-            android:label="OCR Activity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
+            android:label="OCR Activity" />
         <activity
             android:name=".MapsActivity"
             android:exported="true"
-            android:label="@string/title_activity_maps">
-
-        </activity>
-
+            android:label="@string/title_activity_maps" />
     </application>
 
 </manifest>

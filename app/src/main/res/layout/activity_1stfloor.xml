@@ -1,18 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_1stfloor"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="416dp"
+        android:layout_width="0dp"
         android:layout_height="244dp"
-        app:srcCompat="@drawable/본관1층"
         android:adjustViewBounds="false"
         android:scaleType="fitXY"
-        tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="244dp" />
+        tools:ignore="MissingConstraints"
+        android:layout_marginLeft="50dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="138dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginBottom="94dp"
+        android:text="공과대학 (공대)"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="46dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginBottom="636dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="94dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="#F80505"
+        android:text="본관1층"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="7dp"
+        android:text="본관4층"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="7dp"
+        android:text="본관5층"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="7dp"
+        android:text="본관6층"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="94dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="35dp"
+        android:text="본관2층"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="94dp"
+        android:layout_marginEnd="68dp"
+        android:text="본관3층"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/m176_3"
+        android:layout_width="17dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginBottom="18dp"
+        android:backgroundTint="#EEFF41"
+        android:textSize="8sp"
+        android:visibility="invisible"
+        tools:ignore="MissingConstraints" />
+
+    <SearchView
+        android:id="@+id/searchView2"
+        android:layout_width="379dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="1dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/showclassroom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="16dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/nbtn1"
+        android:layout_width="320dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="1dp"
+        android:backgroundTint="#CFCACA"
+        tools:ignore="MissingConstraints,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+</RelativeLayout>
