@@ -13,43 +13,71 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kyungheemap.ui.theme.KyungHeeMapTheme
-import org.json.JSONArray
-import org.json.JSONObject
-import java.nio.charset.Charset
-import java.nio.file.Files
-import java.nio.file.Paths
 import androidx.core.content.ContextCompat
 import android.content.Context
+import org.json.JSONArray
+import org.json.JSONObject
+import kotlin.reflect.full.memberProperties
+
+fun getVariableName(variable: Any): String {
+    val properties = variable.javaClass.kotlin.memberProperties
+
+    for (property in properties) {
+        if (property.get(variable) === variable) {
+            return property.name
+        }
+    }
+
+    return "null"
+}
+fun readJsonFromAssets(context: Context, classes:String): String {
+    val jsonFile = context.assets.open("crawlOut.json")
+    val jsonString = jsonFile.bufferedReader().use { it.readText() }
+    val jsonArray = JSONArray(jsonString)
+
+    val resultList = mutableListOf<Map<String, String>>()
+
+    for (i in 0 until jsonArray.length()) {
+        val jsonObject = jsonArray.getJSONObject(i)
+        val name = jsonObject.getString("name")
+        val prof = jsonObject.getString("prof")
+        val time = jsonObject.getString("time")
+        val classValue = jsonObject.getString("class")
+        if(classValue!=classes){
+            continue
+        }
+        if(name=="") {
+            continue
+        }
+        val resultMap = mapOf(
+            "name" to name,
+            "prof" to prof,
+            "time" to time,
+            "class" to classValue
+        )
+
+        resultList.add(resultMap)
+    }
+    val stringBuilder = StringBuilder()
+    for (i in resultList) {
+        stringBuilder.append(i["name"])
+            .append(": ")
+            .append(i["prof"])
+            .append(":: ")
+            .append(i["time"])
+            .append("\n")
+    }
+    val returns = stringBuilder.toString()
+    return returns
+}
+fun getClass(context: Context,variable:Any):String{
+    var Str= getVariableName(variable)
+    var StrFixed="공"+Str[1]+Str[2]+Str[3]+"-"+Str[5]+"호"
+    //m176_3
+    return readJsonFromAssets(context,StrFixed)
+}
 
 
-//// JSON 파일 읽기
-//val jsonString = String(Files.readAllBytes(Paths.get()), Charset.defaultCharset())
-//
-//// JSON 배열 생성
-//val jsonArray = JSONArray(jsonString)
-//fun check(c: String): String{
-//    // JSON 배열 순회
-//    var str=""
-//    for (i in 0 until jsonArray.length()) {
-//        // JSON 객체 가져오기
-//        val jsonObject = jsonArray.getJSONObject(i)
-//
-//        // "class" 값 확인
-//        val classValue = jsonObject.getString("class")
-//
-//        // "class" 값에 "x"가 포함된 경우
-//        if (classValue.contains(c)) {
-//            // "name", "prof", "time" 값 가져오기
-//            val name = jsonObject.getString("name")
-//            val prof = jsonObject.getString("prof")
-//            val time = jsonObject.getString("time")
-//
-//            // 결과 출력
-//            str+="\n"+name+" "+prof+" "+" "+time
-//        }
-//    }
-//    return str
-//}
 class zum1floor : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,8 +126,48 @@ class zum1floor : AppCompatActivity() {
         }
         val viewlabel=findViewById<TextView>(R.id.viewlabels)
         val m176_3=findViewById<Button>(R.id.m176_3)
+        val m167=findViewById<Button>(R.id.m167)
+        val m163=findViewById<Button>(R.id.m163)
+        val m129=findViewById<Button>(R.id.m129)
+        val m107=findViewById<Button>(R.id.m107)
+        m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+        viewlabel.text="\n\n\n건축디지털디자인기초:이영석,금 10:30~13:15\n건축BIM:백장운,화 15:00~16:15\n공학프로그래밍입문:윤정호,화 09:00~10:15"
+        m176_3.setOnClickListener {
             m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            viewlabel.text="\n\n\n사회기반시스템디자인1:김성민,화 16: 30~19: 15\n건축공학프로그래밍:연문숙,수 16: 30~19: 15\n건축공학응용설계:백장운,월 16: 30~19: 15\n공정설계:원왕연,월 09: 00~10: 15"
+            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            viewlabel.text="\n\n\n건축디지털디자인기초:이영석,금 10:30~13:15\n건축BIM:백장운,화 15:00~16:15\n공학프로그래밍입문:윤정호,화 09:00~10:15"}
+
+        m167.setOnClickListener {
+            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            viewlabel.text="\n\n\n첨단나노소재연구실"}
+        m163.setOnClickListener {
+            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            viewlabel.text="\n\n\n공과대학학생회실"}
+        m129.setOnClickListener {
+            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            viewlabel.text="\n\n\n핵자기공명분광계실"}
+        m107.setOnClickListener {
+            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            viewlabel.text="\n\n\n세미나실"}
     }
 }
 class m1floor : AppCompatActivity() {
@@ -150,12 +218,52 @@ class m1floor : AppCompatActivity() {
         }
         val viewlabel=findViewById<TextView>(R.id.viewlabels)
         val m176_3=findViewById<Button>(R.id.m176_3)
+        val m167=findViewById<Button>(R.id.m167)
+        val m163=findViewById<Button>(R.id.m163)
+        val m129=findViewById<Button>(R.id.m129)
+        val m107=findViewById<Button>(R.id.m107)
+        val m104=findViewById<Button>(R.id.m104)
+        m104.setOnClickListener {
+            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            viewlabel.text="\n\n\n김곤 교수연구실"}
 
-
-        m176_3.setOnClickListener {
-            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            viewlabel.text="\n\n\n사회기반시스템디자인1:김성민,화 16: 30~19: 15\n건축공학프로그래밍:연문숙,수 16: 30~19: 15\n건축공학응용설계:백장운,월 16: 30~19: 15\n공정설계:원왕연,월 09: 00~10: 15"
-        }
+        m167.setOnClickListener {
+            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            viewlabel.text="\n\n\n첨단나노소재연구실"}
+        m163.setOnClickListener {
+            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            viewlabel.text="\n\n\n공과대학학생회실"}
+        m129.setOnClickListener {
+            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            viewlabel.text="\n\n\n핵자기공명분광계실"}
+        m107.setOnClickListener {
+            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            viewlabel.text="\n\n\n세미나실"}
     }
 }
 class m2floor : AppCompatActivity() {
