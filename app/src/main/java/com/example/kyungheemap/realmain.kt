@@ -30,6 +30,7 @@ fun getVariableName(variable: Any): String {
 
     return "null"
 }
+
 fun readJsonFromAssets(context: Context, classes:String): String {
     val jsonFile = context.assets.open("crawlOut.json")
     val jsonString = jsonFile.bufferedReader().use { it.readText() }
@@ -77,7 +78,12 @@ fun getClass(context: Context,variable:Any):String{
     return readJsonFromAssets(context,StrFixed)
 }
 
-
+fun <T> buttonReset(vararg ts: Button):Boolean {
+    for (t in ts){
+        t.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+    }
+    return true
+}
 class zum1floor : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -128,46 +134,35 @@ class zum1floor : AppCompatActivity() {
         val m176_3=findViewById<Button>(R.id.m176_3)
         val m167=findViewById<Button>(R.id.m167)
         val m163=findViewById<Button>(R.id.m163)
+        val m104=findViewById<Button>(R.id.m104)
         val m129=findViewById<Button>(R.id.m129)
         val m107=findViewById<Button>(R.id.m107)
-        m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-        viewlabel.text="\n\n\n건축디지털디자인기초:이영석,금 10:30~13:15\n건축BIM:백장운,화 15:00~16:15\n공학프로그래밍입문:윤정호,화 09:00~10:15"
+        viewlabel.text= getClass(this,m176_3)
         m176_3.setOnClickListener {
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
             m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            viewlabel.text="\n\n\n건축디지털디자인기초:이영석,금 10:30~13:15\n건축BIM:백장운,화 15:00~16:15\n공학프로그래밍입문:윤정호,화 09:00~10:15"}
+            viewlabel.text=getClass(this,m176_3)}
 
         m167.setOnClickListener {
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
             m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            viewlabel.text="\n\n\n첨단나노소재연구실"}
+            viewlabel.text=getClass(this,m167)}
         m163.setOnClickListener {
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
             m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            viewlabel.text="\n\n\n공과대학학생회실"}
+            viewlabel.text=getClass(this,m163)}
         m129.setOnClickListener {
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
             m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            viewlabel.text="\n\n\n핵자기공명분광계실"}
+            viewlabel.text=getClass(this,m129)}
         m107.setOnClickListener {
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
             m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            viewlabel.text="\n\n\n세미나실"}
+            viewlabel.text=getClass(this,m107)}
+        m104.setOnClickListener {
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
+            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+            viewlabel.text=getClass(this,m104)}
     }
 }
 class m1floor : AppCompatActivity() {
@@ -220,50 +215,35 @@ class m1floor : AppCompatActivity() {
         val m176_3=findViewById<Button>(R.id.m176_3)
         val m167=findViewById<Button>(R.id.m167)
         val m163=findViewById<Button>(R.id.m163)
+        val m104=findViewById<Button>(R.id.m104)
         val m129=findViewById<Button>(R.id.m129)
         val m107=findViewById<Button>(R.id.m107)
-        val m104=findViewById<Button>(R.id.m104)
-        m104.setOnClickListener {
-            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            viewlabel.text="\n\n\n김곤 교수연구실"}
+        m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+        m176_3.setOnClickListener {
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
+            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+            viewlabel.text=getClass(this,m176_3)}
 
         m167.setOnClickListener {
-            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
             m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            viewlabel.text="\n\n\n첨단나노소재연구실"}
+            viewlabel.text=getClass(this,m167)}
         m163.setOnClickListener {
-            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
             m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            viewlabel.text="\n\n\n공과대학학생회실"}
+            viewlabel.text=getClass(this,m163)}
         m129.setOnClickListener {
-            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
             m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            viewlabel.text="\n\n\n핵자기공명분광계실"}
+            viewlabel.text=getClass(this,m129)}
         m107.setOnClickListener {
-            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
             m107.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            m176_3.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m129.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m163.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            m167.backgroundTintList = ContextCompat.getColorStateList(this,R.color.nFFyellow)
-            viewlabel.text="\n\n\n세미나실"}
+            viewlabel.text=getClass(this,m107)}
+        m104.setOnClickListener {
+            buttonReset<Button>(m176_3,m107,m129,m163,m167)
+            m104.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
+            viewlabel.text=getClass(this,m104)}
     }
 }
 class m2floor : AppCompatActivity() {
@@ -365,7 +345,7 @@ class m3floor : AppCompatActivity() {
         val m371=findViewById<Button>(R.id.m371)
         m371.setOnClickListener {
             m371.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            viewlabel.text="\n\n\n열역학:홍희기,화 16: 화 09: 00~10: 15\n재료역학:이경업,수 16: 30~19: 15\n"
+            viewlabel.text= getClass(this,m371)
         }
     }
 }
@@ -418,7 +398,7 @@ class zum3floor : AppCompatActivity() {
         val viewlabel=findViewById<TextView>(R.id.viewlabels)
         val m371=findViewById<Button>(R.id.m371)
             m371.backgroundTintList = ContextCompat.getColorStateList(this,R.color.FFyellow)
-            viewlabel.text="\n\n\n열역학:홍희기,화 16: 화 09: 00~10: 15\n재료역학:이경업,수 16: 30~19: 15\n"
+            viewlabel.text=getClass(this,m371)
 
     }
 }
@@ -565,6 +545,7 @@ class m6floor : AppCompatActivity() {
             val intent = Intent(this@m6floor, m6floor::class.java)
             startActivity(intent)
             finish()
+            getClass(this,"2332")
         }
 
     }

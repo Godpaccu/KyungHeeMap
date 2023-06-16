@@ -31,3 +31,6 @@ class LineAdapter(private val lines: List<String>) : RecyclerView.Adapter<LineAd
         return lines.size
     }
 }
+val default1="그래픽및공학설계-공176-3호"
+val default2="열역학-공371호"
+val default3="재료역학-공371호"

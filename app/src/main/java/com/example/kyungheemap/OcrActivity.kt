@@ -140,27 +140,27 @@ class OcrActivity : AppCompatActivity() {
         }
 
 
-        // Divide the image and perform OCR on each section
+        // 이미지 나누고, 각각 ocr
         for (i in 0 until totalSections) {
             val left = i * sectionWidth
             val right = left + sectionWidth
 
-            // Crop the image section
+
             val sectionBitmap =
                 Bitmap.createBitmap(imageBitmap, left, 0, sectionWidth, imageBitmap.height)
 
             val image: InputImage = InputImage.fromBitmap(sectionBitmap, 0)
 
-            // Perform OCR on the section image
+
             val result = recognizer.process(image)
                 .addOnSuccessListener { visionText ->
-                    // Handle OCR result for each section
+
                     val sectionOcrResult = extractOcrResult(visionText)
                     processOcrCallback(sectionOcrResult) // OCR 결과를 처리하는 콜백 함수 호출
 
                 }
                 .addOnFailureListener { e ->
-                    // Handle OCR failure for each section
+
                     processOcrCallback("") // OCR 실패 시 빈 결과를 처리하는 콜백 함수 호출
                 }
         }
@@ -263,9 +263,9 @@ class ShowActivity : AppCompatActivity() {
         label_7 = findViewById(R.id.textView7)
 
         savedInstanceState?.let {
-            label_1.text = it.getString("label_1_text", "No divided lines")
-            label_2.text = it.getString("label_2_text", "No divided lines")
-            label_3.text = it.getString("label_3_text", "No divided lines")
+            label_1.text = it.getString("label_1_text", default1)
+            label_2.text = it.getString("label_2_text", default2)
+            label_3.text = it.getString("label_3_text", default3)
             label_4.text = it.getString("label_4_text", "수업이 없습니다")
             label_5.text = it.getString("label_5_text", "수업이 없습니다")
             label_6.text = it.getString("label_6_text", "수업이 없습니다")
